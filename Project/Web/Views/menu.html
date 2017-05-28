@@ -1,0 +1,9 @@
+<div>
+		<a ng-show="IsAdmin()" href="telescope/{{ telescope.Id }}" uib-tooltip="Manage properties"><span class="glyphicon glyphicon-wrench"></span></a>
+		<a href="interface/{{ telescope.Id }}" uib-tooltip="Manage devices"><span class="glyphicon glyphicon-cog"></span></a>
+		<a href="targets/{{ telescope.Id }}" uib-tooltip="Manage targets"><span class="glyphicon glyphicon-screenshot"></span></a>
+		<a href="selector/{{ telescope.Id }}" uib-tooltip="Selector"><span class="glyphicon glyphicon-random"></span></a>
+		<a href="executor/{{ telescope.Id }}" uib-tooltip="Executor"><span class="glyphicon glyphicon-flash"></span></a>
+		<a href="imagesByDate/{{ telescope.Id }}" uib-tooltip="Access images by date"><span class="glyphicon glyphicon-picture"></span></a>
+		<a href="imagesByTarget/{{ telescope.Id }}" uib-tooltip="Access images by target"><span class="glyphicon glyphicon-picture"></span></a>
+</div>

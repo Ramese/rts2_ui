@@ -1,0 +1,38 @@
+<div class="container-fluid">
+    <div class="pull-right" ng-include="'Views/menu.html'">
+	</div>
+    
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Images
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Search:</label>
+                        <div class="col-sm-6">
+                            <ui-select ng-model="choosenTarget" theme="bootstrap" on-select="changeTarget(choosenTarget)" reset-search-input="false">
+                                <ui-select-match placeholder="Search target...">{{$select.selected[1]}}</ui-select-match>
+                                <ui-select-choices repeat="item in targets.d track by $index" refresh="findTargets($select.search)" refresh-delay="1">
+                                <div ng-bind-html="item[1] | highlight: $select.search"></div>
+                                <small ng-bind-html="'RA:' + (item[2] | number: 2) + ' DEC:' + (item[3] | number: 2) + ' Count: ' + item.imgCount"></small>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="col-sm-4" ng-repeat="img in images">
+                        <div>
+                            <img src="{{img.src}}"  style="max-height: 300px;" /> <br />
+                            <button class="btn btn-primary" type="button" ng-click="downloadFits(img)">
+                                Download fits
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

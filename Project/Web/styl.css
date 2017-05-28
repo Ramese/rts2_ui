@@ -1,0 +1,108 @@
+body {
+    padding-top: 70px;
+}
+
+.full button.btn{
+    background-color: limegreen;
+    border-radius: 32px;
+    color: black;
+}
+
+.partially button span {
+	background-color: orange;
+	border-radius: 32px;
+	color: black;
+}
+
+.drop-box {
+    background: #F8F8F8;
+    border: 5px dashed #DDD;
+    border-radius: 10px;
+    height: 65px;
+    text-align: center;
+    /*padding-top: 25px;*/
+    margin: 10px auto 10px auto;
+}
+.dragover {
+    border: 5px dashed blue;
+}
+
+h6 {
+    font-size: 14px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+svg {
+	width: 30px;
+	height: 26px;
+	-webkit-transform-origin: 15px 13px 10px;
+	-moz-transform-origin: 15px 13px 10px;
+	-o-transform-origin: 15px 13px 10px;
+	transform-origin: 15px 13px 10px;
+}
+
+text {
+	-webkit-transform-origin: 15px 13px 10px;
+	-moz-transform-origin: 15px 13px 10px;
+	-o-transform-origin: 15px 13px 10px;
+	transform-origin: 15px 13px 10px;
+}
+
+.oki {
+
+	-webkit-animation: spin1 2s 1 linear;
+	-moz-animation: spin1 2s 1 linear;
+	-o-animation: spin1 2s 1 linear;
+	-ms-animation: spin1 2s 1 linear;
+	animation: spin1 2s 1 linear;
+	
+}
+
+.noki {
+
+	-webkit-animation: posun 200ms 3 linear;
+	-moz-animation: posun 300ms 3 linear;
+	-o-animation: posun 300ms 3 linear;
+	-ms-animation: posun 300ms 3 linear;
+	animation: posun 300ms 3 linear;
+	
+}
+
+@keyframes posun {
+    0%, 100% { 
+    	transform: translate(-5px);
+	-ms-transform: translate(-5px); /* IE 9 */
+	-webkit-transform: translate(-5px); /* Safari and Chrome */
+	-o-transform: translate(-5px); /* Opera */
+	-moz-transform: translate(-5px); /* Firefox */
+    	}
+    50%      { 
+    	transform: translate(5px);
+	-ms-transform: translate(5px); /* IE 9 */
+	-webkit-transform: translate(5px); /* Safari and Chrome */
+	-o-transform: translate(5px); /* Opera */
+	-moz-transform: translate(5px); /* Firefox */
+	}
+}
+
+@-webkit-keyframes spin1 {
+	0% { -webkit-transform: rotate(0deg);}
+	100% { -webkit-transform: rotate(360deg);}
+}
+@-moz-keyframes spin1 {
+	0% { -moz-transform: rotate(0deg);}
+	100% { -moz-transform: rotate(360deg);}
+}
+@-o-keyframes spin1 {
+	0% { -o-transform: rotate(0deg);}
+	100% { -o-transform: rotate(360deg);}
+}
+@-ms-keyframes spin1 {
+	0% { -ms-transform: rotate(0deg);}
+	100% { -ms-transform: rotate(360deg);}
+}
+@-keyframes spin1 {
+	0% { transform: rotate(0deg);}
+	100% { transform: rotate(360deg);}
+} 

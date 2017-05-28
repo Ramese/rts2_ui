@@ -1,0 +1,127 @@
+<div class="container-fluid">
+	<div class="pull-right" ng-include="'Views/menu.html'">
+	</div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Main controll panel
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <ul class="nav nav-tabs">
+		  <li ng-class="{'active': choosenDevice == d}" ng-repeat="d in devices">
+		  	<a href="#" ng-click="GetDeviceProperties(d)">{{d}}</a>
+		  </li>
+		</ul>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="form-group col-sm-4" ng-repeat="p in properties" ng-init="dev = device.d[p]" ng-class="{'has-error': dev[2], 'has-warning': dev[3]}">
+		        	<label class="col-sm-4 control-label" title="{{dev[4]}}">{{ p }}</label>
+		        	<div class="input-group col-sm-8">
+						<span class="input-group-addon">
+							<span class="glyphicon" 
+								ng-class="{'glyphicon-lock': IsReadOnly(dev[0]), 'glyphicon-pencil': !IsReadOnly(dev[0])}">
+							</span>
+						</span>
+						<input class="form-control" 
+								title="{{dev[4]}}" 
+								type="text" 
+								ng-model="dev[1]" 
+								ng-disabled="IsReadOnly(dev[0])"
+								ng-hide="IsBoolean(dev[0]) || IsRectangle(dev[0]) || IsArray(dev[0]) || IsRaDecValue(dev[0]) || IsAltAzValue(dev[0])" />
+
+						<input class="form-control chb" 
+								title="{{dev[4]}}" 
+								type="checkbox" 
+								ng-model="dev[1]" 
+								ng-disabled="IsReadOnly(dev[0])"
+								ng-show="IsBoolean(dev[0])" />
+
+						<div class="col-sm-12" ng-show="IsRectangle(dev[0])">
+							<div class="row">
+								<input title="{{dev[4]}}" class="form-control" type="text" ng-model="dev[1][0]" ng-disabled="IsReadOnly(dev[0])" />
+								<input title="{{dev[4]}}" class="form-control" type="text" ng-model="dev[1][1]" ng-disabled="IsReadOnly(dev[0])" />
+								<input title="{{dev[4]}}" class="form-control" type="text" ng-model="dev[1][2]" ng-disabled="IsReadOnly(dev[0])" />
+								<input title="{{dev[4]}}" class="form-control" type="text" ng-model="dev[1][3]" ng-disabled="IsReadOnly(dev[0])" />
+							</div>
+						</div>
+
+						<div class="col-sm-12" ng-show="IsRaDecValue(dev[0])">
+							<div class="row">
+								<div>
+									RA: <input title="{{dev[4]}}" class="form-control" type="text" ng-model="dev[1].ra" ng-disabled="IsReadOnly(dev[0])" />
+								</div>
+								<div>
+									DEC: <input title="{{dev[4]}}" class="form-control" type="text" ng-model="dev[1].dec" ng-disabled="IsReadOnly(dev[0])" />
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-12" ng-show="IsAltAzValue(dev[0])">
+							<div class="row">
+								<div>
+									Alt: <input title="{{dev[4]}}" class="form-control" type="text" ng-model="dev[1].alt" ng-disabled="IsReadOnly(dev[0])" />
+								</div>
+								<div>
+									Az: <input title="{{dev[4]}}" class="form-control" type="text" ng-model="dev[1].az" ng-disabled="IsReadOnly(dev[0])" />
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-12" ng-show="IsArray(dev[0])">
+							<div class="row">
+								<div ng-repeat="i in dev[1] track by $index">
+									<div class="input-group">
+										<input title="{{dev[4]}}" class="form-control" type="text" ng-model="dev[1][$index]" ng-disabled="IsReadOnly(dev[0])" />
+
+										<span class="input-group-addon" ng-hide="IsReadOnly(dev[0])" ng-click="RemoveFromArray($index, dev[1])" style="cursor:pointer">
+											<span class="glyphicon glyphicon-minus"></span>
+										</span>
+									</div>
+								</div>
+								<button class="form-control btn btn-primary" type="button" ng-click="dev[1].push('')"  ng-hide="IsReadOnly(dev[0])">
+									<span class="glyphicon glyphicon-plus"></span>
+								</button>
+							</div>
+						</div>
+
+						<span class="input-group-addon" ng-hide="IsReadOnly(dev[0])" ng-click="SetValue(p, dev)" style="cursor:pointer">
+							<span class="glyphicon glyphicon-floppy-disk"></span>
+						</span>
+					</div>
+					<div class="col-sm-12">
+						<span class="label label-info">{{dev[0]}}</span>
+						
+						<span class="label label-info" ng-show="IsWriteable(dev[0])">Is Writeable</span>
+						<span class="label label-info" ng-show="IsString(dev[0])">Is String</span>
+						<span class="label label-info" ng-show="IsInteger(dev[0])">IsInteger</span>
+						<span class="label label-info" ng-show="IsTime(dev[0])">IsTime</span>
+						<span class="label label-info" ng-show="IsDouble(dev[0])">IsDouble</span>
+						<span class="label label-info" ng-show="IsFloat(dev[0])">IsFloat</span>
+						<span class="label label-info" ng-show="IsBoolean(dev[0])">IsBoolean</span>
+						<span class="label label-info" ng-show="IsSelection(dev[0])">IsSelection</span>
+						<span class="label label-info" ng-show="IsLong(dev[0])">IsLong</span>
+						<span class="label label-info" ng-show="IsRaDecValue(dev[0])">IsRaDecValue</span>
+						<span class="label label-info" ng-show="IsAltAzValue(dev[0])">IsAltAzValue</span>
+						<span class="label label-info" ng-show="IsPID(dev[0])">IsPID</span>
+						<span class="label label-info" ng-show="IsStat(dev[0])">IsStat</span>
+						<span class="label label-info" ng-show="IsMinMax(dev[0])">IsMinMax</span>
+						<span class="label label-info" ng-show="IsRectangle(dev[0])">IsRectangle</span>
+						<span class="label label-info" ng-show="IsArray(dev[0])">IsArrray</span>
+						<span class="label label-info" ng-show="IsTimeSerie(dev[0])">IsTimeSerie</span>
+						<span class="label label-info" ng-show="IsNotNull(dev[0])">IsNotNull</span>
+						
+
+						<span class="label label-info" ng-show="HasValueError(dev[0])">HasValueError</span>
+						<span class="label label-info" ng-show="HasValueWarning(dev[0])">HasValueWarning</span>
+					</div>
+					
+				</div>
+        	</div>	
+            <div class="row" ng-show="choosenDevice == 'C0' || choosenDevice == 'C1' || choosenDevice == 'C2' || choosenDevice == 'C3'" ng-include="'Views/currentImg.html'" ng-controller="CurrentImgCtrl">
+            </div>
+        </div>
+    </div>
+</div>

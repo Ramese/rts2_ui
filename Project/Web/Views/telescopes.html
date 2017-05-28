@@ -1,0 +1,26 @@
+<div class="container-fluid">
+    <a href="telescope/new" class="btn btn-primary">New</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>URL</th>
+                <th>UserName</th>
+                <th>Password</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="telescope in telescopes">
+                <td>{{ telescope.Id }}</td>
+                <td>{{ telescope.Name }}</td>
+                <td>{{ telescope.Address }}</td>
+                <td>{{ telescope.AccountName }}</td>
+                <td>{{ telescope.AccountPassword }}</td>
+                <td ng-include="'Views/menu.html'">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

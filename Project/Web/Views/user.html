@@ -1,0 +1,129 @@
+<div class="container-fluid">
+    <form name="regForm" class="form-horizontal" ng-submit="register()">
+    
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            User
+        </div>
+        <div class="panel-body">
+
+			<div class="col-xs-12 condensed-form">
+			
+				<!-- USER NAME -->
+				<div class="form-group has-feedback" ng-class="{'has-error': regForm.UserName.$invalid, 'has-success': user.UserName != '' && !regForm.UserName.$invalid}">
+					<label class="col-sm-3 control-label">User name</label>
+					<div class="col-sm-9">
+						<input type="text" ng-model="user.UserName" name="UserName" class="form-control" ng-change="isUserNameFree()" ng-disabled="IdUser != 'new'" />
+                        <span ng-class="{ 'glyphicon glyphicon-remove form-control-feedback' : regForm.LastName.$invalid, 'glyphicon glyphicon-ok form-control-feedback' : user.UserName != '' && !regForm.LastName.$invalid }"></span>
+					</div>
+				</div>
+
+				<!-- EMAIL -->
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Email</label>
+					<div class="input-group col-sm-9" style="padding-left: 15px; padding-right: 15px;">
+						<div class="input-group-addon" ng-click="user.Email = user.Email + '@'">@</div>
+						<input type="text" class="form-control" ng-model="user.Email" />
+					</div>
+				</div>
+
+				<!-- ROLE -->
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Role</label>
+					<div class="col-sm-9">
+						<label class="radio-inline">
+							<input type="radio" name="Role" ng-model="user.Role" ng-value="'Admin'" ng-required="1" /> Admin
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="Role" ng-model="user.Role" ng-value="'Public'" ng-required="1" /> Public
+						</label>
+                        <label class="radio-inline">
+							<input type="radio" name="Role" ng-model="user.Role" ng-value="'Scientist'" ng-required="1" /> Scientist
+						</label>
+					</div>
+				</div>
+                
+                <!-- ROLE -->
+				<div class="form-group">
+					<label class="col-sm-3 control-label">IsActive</label>
+					<div class="col-sm-9">
+                        <input type="checkbox" name="IsActive" ng-model="user.IsActive" />
+					</div>
+				</div>
+
+				<!-- FIRST NAME -->
+				<div class="form-group has-feedback" ng-class="{'has-error': regForm.FirstName.$invalid, 'has-success': user.FirstName != '' && !regForm.FirstName.$invalid}">
+					<label class="col-sm-3 control-label">First name</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" name="FirstName" ng-model="user.FirstName" ng-pattern="FirstNamePattern" />
+						<span ng-class="{ 'glyphicon glyphicon-remove form-control-feedback' : regForm.FirstName.$invalid, 'glyphicon glyphicon-ok form-control-feedback' : user.FirstName != '' && !regForm.FirstName.$invalid }"></span>
+					</div>
+				</div>
+
+				<!-- LAST NAME -->
+				<div class="form-group has-feedback" ng-class="{'has-error': regForm.LastName.$invalid, 'has-success': user.LastName != '' && !regForm.LastName.$invalid}">
+					<label class="col-sm-3 control-label">Last name</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" name="LastName" ng-model="user.LastName" ng-pattern="LastNamePattern" />
+						<span ng-class="{ 'glyphicon glyphicon-remove form-control-feedback' : regForm.LastName.$invalid, 'glyphicon glyphicon-ok form-control-feedback' : user.LastName != '' && !regForm.LastName.$invalid }"></span>
+					</div>
+				</div>
+                
+                <!-- PASSWORD -->
+				<div class="form-group has-feedback" ng-class="{'has-error': regForm.Password.$invalid, 'has-success': user.Password != '' && !regForm.Password.$invalid}">
+					<label class="col-sm-3 control-label">Password</label>
+					<div class="col-sm-9">
+						<input type="password" class="form-control" name="Password" ng-model="user.Password" ng-pattern="PasswordPattern" />
+						<span ng-class="{ 'glyphicon glyphicon-remove form-control-feedback': regForm.Password.$invalid, 'glyphicon glyphicon-ok form-control-feedback' : user.Password != '' && !regForm.Password.$invalid }"></span>
+					</div>
+				</div>
+
+				<!-- PASSWORD REPEAT -->
+				<div class="form-group has-feedback" ng-class="{'has-error': regForm.PasswordRepeat.$invalid, 'has-success': user.PasswordRepeat != '' && !regForm.PasswordRepeat.$invalid}">
+					<label class="col-sm-3 control-label">Password again</label>
+					<div class="col-sm-9">
+						<input type="password" class="form-control" name="PasswordRepeat" ng-model="user.PasswordRepeat" ng-pattern="PasswordPattern" />
+						<span ng-class="{ 'glyphicon glyphicon-remove form-control-feedback' : regForm.PasswordRepeat.$invalid, 'glyphicon glyphicon-ok form-control-feedback': user.PasswordRepeat != '' && !regForm.PasswordRepeat.$invalid }"></span>
+					</div>
+				</div>
+		
+			</div>
+		
+        </div>
+        <div class="panel-footer">
+            <button class="btn btn-primary"  type="submit">
+                <span ng-hide="IdUser == 'new'">Save</span>
+                <span ng-show="IdUser == 'new'">Register</span>
+            </button>
+        </div>
+    </div>
+
+
+	<div ng-hide="IdUser == 'new' || user.Role != 'Scientist'" class="panel panel-default">
+        <div class="panel-heading">
+            User's telescopes
+        </div>
+        <div class="panel-body">
+
+			<div class="col-xs-12 condensed-form">
+				<div ng-repeat="t in telescopes" class="row">
+					<div class="col-xs-2">
+						<input type="checkbox" ng-model="t.Has" />
+					</div>
+					<div class="col-xs-10">
+						{{ t.Name }}
+					</div>
+				</div>
+				
+			</div>
+		
+        </div>
+        <div class="panel-footer">
+            <button class="btn btn-primary" ng-click="saveTelescopes()"  type="button">
+                <span>Save</span>
+            </button>
+        </div>
+    </div>
+        
+    </form>
+</div>

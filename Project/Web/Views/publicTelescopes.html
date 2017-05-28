@@ -1,0 +1,23 @@
+<div class="container-fluid">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Public time panel
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-12" ng-repeat="t in telescopes">
+                    <label>{{t.Name}}</label>
+                    <div class="progress" style="height: 50px;">
+                        <div class="progress-bar" 
+                            ng-repeat="period in t.periods" 
+                            ng-style="{ 'width' : getWidthForPeriod(period) + '%' }"
+                            ng-class="{'progress-bar-info': period.TargetName == 'Private time'}"
+                            uib-tooltip="{{ getShowTime(period.Start) }} - {{ getShowTime(period.End) }}">
+                                <span>{{period.TargetName}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

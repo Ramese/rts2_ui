@@ -1,0 +1,26 @@
+<div class="container-fluid">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Main controll panel
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div uib-datepicker="" ng-model="choosenDate" class="well well-sm" datepicker-options="options"></div>
+                </div>
+                <div class="col-sm-9">
+                    <div ng-repeat="tel in telescopes">
+                        <label>{{tel.name}}</label>
+                        <div class="progress" style="height: 50px;">
+                            <div ng-repeat="period in tel.periods">
+                                <div class="progress-bar"  style="height: 50px;" ng-style="{ 'width' : period.percent }" ng-class="{'progress-bar-success': period.coordinates == 'free'}">
+                                    <span>{{period.coordinates}}°</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="container-fluid">
+    <div class="pull-right" ng-include="'Views/menu.html'">
+	</div>
+    
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Images
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div uib-datepicker="" ng-model="choosenDate" class="well well-sm" datepicker-options="options" ng-change="dateChanged()"></div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="col-sm-4" ng-repeat="img in images">
+                        <div>
+                            <img src="{{img.src}}" style="max-height: 300px;" /> <br />
+                            <button class="btn btn-primary" type="button" ng-click="downloadFits(img)">
+                                Download fits
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

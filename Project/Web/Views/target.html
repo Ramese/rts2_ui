@@ -1,0 +1,88 @@
+<div class="container-fluid">
+    <h2>Target edit</h2>
+
+    <form>
+        <!-- UPDATE TARGET -->
+        <div ng-hide="targetId == 'new'">
+            <div class="row" ng-repeat="h in targetData.h">
+                <div class="col-sm-6">
+                    <label>{{ h['n'] }}</label>
+                </div>
+
+                <div class="col-sm-6">
+                    <div ng-hide="h['n'] == 'Scripts'">
+                        <input type="text" ng-model="targetData.d[0][h['c']]" ng-disabled="IsAttributeReadOnly(h['n'])" />
+                    </div>
+
+                    <div ng-show="h['n'] == 'Scripts'">
+                        <span ng-repeat="key in targetData.d[0][h['c']]">{{key}}</span>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-primary" type="button" ng-click="UpdateTarget()">Update tareget</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- CREATE TARGET -->
+        <div ng-show="targetId == 'new'">
+            <div class="row">
+                <div class="col-sm-6">
+                    <label>Target name</label>
+                </div>
+
+                <div class="col-sm-6">
+                    <input type="text" ng-model="target.Name" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <label>RA</label>
+                </div>
+
+                <div class="col-sm-6">
+                    <input type="text" ng-model="target.RA" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <label>DEC</label>
+                </div>
+
+                <div class="col-sm-6">
+                    <input type="text" ng-model="target.DEC" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <label>Type</label>
+                </div>
+
+                <div class="col-sm-6">
+                    <input type="text" ng-model="target.Type" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <label>Info</label>
+                </div>
+
+                <div class="col-sm-6">
+                    <input type="text" ng-model="target.Info" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-primary" type="button" ng-click="CreateTarget()">Create target</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

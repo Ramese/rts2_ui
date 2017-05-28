@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html data-ng-app="app">
+    <head>
+        <base href="/rts2/" />
+        
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        <title data-ng-bind="$root.title">RTS2 Web</title>
+        
+        <!-- %%%%% LIBs JS %%%%% -->
+        <script src="bower_components/jquery/dist/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="bower_components/angular/angular.js" type="text/javascript" charset="utf-8"></script>
+        <script src="bower_components/angular-route/angular-route.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="bower_components/angular-cookies/angular-cookies.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="bower_components/angular-ui-select/dist/select.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.min.js" type="text/javascript" charset="utf-8"></script>
+        
+        <script src="bower_components/ng-file-upload/ng-file-upload-shim.min.js" type="text/javascript" charset="utf-8"></script> <!-- for no html5 browsers support -->
+        <script src="bower_components/ng-file-upload/ng-file-upload.min.js" type="text/javascript" charset="utf-8"></script> 
+        
+        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+        
+        <script src="bower_components/angular-translate/angular-translate.min.js" type="text/javascript" charset="utf-8"></script>
+        
+        <script src="bower_components/bootstrap3-dialog/dist/js/bootstrap-dialog.min.js" type="text/javascript" charset="utf-8"></script>
+        
+        <script src="bower_components/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js"></script>
+        
+        <script src="bower_components/moment/moment.js"></script>
+        <script src="bower_components/angular-moment/angular-moment.js"></script>
+        <!-- %%%%% JS %%%%% -->
+        <script src="Scripts/controllers.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Scripts/Controllers/LoginCtrl.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Scripts/Controllers/LogoutCtrl.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Scripts/Controllers/CalendarCtrl.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Scripts/Controllers/InterfaceCtrl.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Scripts/Controllers/TimeTableCtrl.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Scripts/Controllers/CurrentImgCtrl.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Scripts/Controllers/TelescopeCtrl.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Scripts/Controllers/PublicTelescopesCtrl.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Scripts/Controllers/UsersCtrl.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Scripts/Controllers/UserCtrl.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Scripts/Controllers/RegistrationCtrl.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Scripts/Controllers/ImagesByDateCtrl.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Scripts/Controllers/ImagesByTargetCtrl.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Scripts/Controllers/TargetsCtrl.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Scripts/Controllers/TargetCtrl.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Scripts/Controllers/PlanCtrl.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Scripts/Controllers/ExecutorCtrl.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Scripts/Controllers/SelectorCtrl.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Scripts/Controllers/TelescopesCtrl.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Scripts/Controllers/NavCtrl.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Scripts/services.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Scripts/Services/AuthService.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Scripts/Services/RegisterService.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Scripts/Services/ImageService.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Scripts/Services/UserService.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Scripts/Services/TelescopeService.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Scripts/translateConfig.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Scripts/app.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Scripts/download.js" type="text/javascript" charset="utf-8"></script>
+        
+        <!-- %%%%% CSS %%%%% -->
+        <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="bower_components/angular-ui-select/dist/select.min.css" rel="stylesheet" />
+        <link href="bower_components/bootstrap3-dialog/dist/css/bootstrap-dialog.min.css" rel="stylesheet" />
+        <link href="styl.css" rel="stylesheet" />
+        <link href="bower_components/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+
+        
+        
+    </head>
+
+    <body data-ng-controller="NavCtrl">
+        
+        <nav class="navbar navbar-fixed-top navbar-inverse">
+          <div class="container-fluid">
+
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+                <header>
+                    <span class="navbar-brand">
+                        <svg>
+                            <ellipse cx="55%" cy="50%" rx="45%" ry="50%" style="fill:white" />
+                            <circle cx="50%" cy="50%" r="45%" style="fill:black;stroke:white;stroke-width:1;fill-opacity:0.8;stroke-opacity:0.9" />
+                            <text id="text" fill="white" x="50%" y="20" text-anchor="middle" alignment-baseline="baseline">T</text> 
+                        </svg> 
+                    </span>
+                        <span class="navbar-brand" style="-ms-transform: rotate(-6deg); -webkit-transform: rotate(-6deg); transform: rotate(-6deg);">
+                            RTS2 UI
+                        </span>
+                </header>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li ng-if="IsLoggedIn() && !IsPublic()">
+                    <a href="telescopes">
+                        <span class="glyphicon glyphicon-list"></span> Telescopes
+                    </a>
+                </li>
+                <li>
+                    <a href="publicTelescopes">
+                        <i class="fa fa-hand-spock-o" aria-hidden="true"></i> Public telescopes
+                    </a>
+                </li>
+                <li ng-if="IsLoggedIn() && IsAdmin()">
+                    <a href="users">
+                        <i class="fa fa-users" aria-hidden="true"></i> Users
+                    </a>
+                </li>
+                <li ng-if="!IsLoggedIn()">
+                    <a href="registration">
+                        <span class="glyphicon glyphicon-ok"></span> Registration
+                    </a>
+                </li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li ng-if="!IsLoggedIn()"><a href="./login"><span class="fa fa-reply"></span>&nbsp;Login</a></li>
+                <li ng-if="IsLoggedIn()" class="dropdown">
+                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> {{user.UserName}} <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="./about"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Nápověda</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">Role: {{ user.Role }}</li>
+                        <li class="dropdown-header">User: {{ user.FirstName + ' ' + user.LastName }}</li>
+                        <li class="dropdown-header">Email: {{ user.Email }}</li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="./logout"><span class="glyphicon glyphicon-off"></span>&nbsp;Logout</a></li>
+                    </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        
+        <div data-ng-view class="container-fluid"></div>  
+    </body>
+</html>

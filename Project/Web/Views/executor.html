@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    <div class="pull-right" ng-include="'Views/menu.html'">
+	</div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Target</th>
+                <th>Time</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="t in executor.d.next_executed_ids[1] track by $index">
+                <td><span uib-tooltip="{{ getTargetTooltip(targets[t]) }}">{{ targets[t][1] }}</span></td>
+                <td>{{ executor.d.next_executed_times[1][$index]*1000 | date:'yyyy-MM-dd HH:mm:ss Z' }}</td>
+                <td>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

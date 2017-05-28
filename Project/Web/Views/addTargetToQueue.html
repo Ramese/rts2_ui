@@ -1,0 +1,81 @@
+<div ng-form="">
+    <div class="row">
+    <div class="col-sm-2">
+        <div class="form-group">
+            <label>Queue</label>
+            <select class="form-control" ng-model="queueName" ng-change="queueChanged(queueName)">
+                <option ng-repeat="q in selector.d.queue_names[1] track by $index" value="{{q}}">{{q}}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="col-sm-2">
+        <div class="form-group">
+            <label class="control-label">Target</label>
+            <div class="">
+                <ui-select ng-model="choosenTarget" theme="bootstrap" on-select="changeTarget(choosenTarget)" reset-search-input="false">
+                    <ui-select-match placeholder="Search target...">{{$select.selected[1]}}</ui-select-match>
+                    <ui-select-choices repeat="item in targets.d track by $index" refresh="findTargets($select.search)" refresh-delay="1">
+                    <div ng-bind-html="item[1] | highlight: $select.search"></div>
+                    <small ng-bind-html="'RA:' + (item[2] | number: 2) + ' DEC:' + (item[3] | number: 2)"></small>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-2">
+        <div class="form-group">
+            <label class="control-label">Start</label>
+            <p class="input-group">
+                <input type="text" class="form-control" datetime-picker="d.M.yyyy HH:mm" ng-model="fromDate" is-open="from.isOpen" when-closed="from.isOpen = false" ng-change="fromDateChanged(fromDate)" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="from.isOpen = true"><i class="fa fa-calendar"></i></button>
+                </span>
+            </p>
+        </div>
+    </div>
+
+    <div class="col-sm-2">
+        <div class="form-group">
+            <label class="control-label">End</label>
+            <p class="input-group">
+                <input type="text" class="form-control" datetime-picker="d.M.yyyy HH:mm" ng-model="toDate" is-open="to.isOpen" when-closed="to.isOpen = false" ng-change="toDateChaned(toDate)" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="to.isOpen = true"><i class="fa fa-calendar"></i></button>
+                </span>
+            </p>
+        </div>
+    </div>
+
+    <div class="col-sm-2">
+        <div class="form-group" 
+            tooltip-placement="bottom"
+            uib-tooltip="Number of repeats. Any value greater than 0 marks queue entry, which shall be repeated.
+           Once the entry is observed, its rep_n is decreased by 1. If the rep_n value is greater
+           than 0, the observation is placed at the end of the queue.">
+            <label class="control-label">Rep</label>
+            <div class="">
+                <input type="text" class="form-control" ng-model="task.Rep" />
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-2">
+        <div class="form-group" 
+            tooltip-placement="bottom"
+            uib-tooltip="Interval between repeated observations. If the observations is repeated (its rep_n value
+           is greater than 0), and rep_separation is set, its start time will be set to
+           rep_separation seconds into future.">
+            <label class="control-label">Separation</label>
+            <div class="">
+                <input type="text" class="form-control" ng-model="task.Sep" />
+            </div>
+        </div>
+    </div>
+
+    
+
+    </div>
+    
+</div>

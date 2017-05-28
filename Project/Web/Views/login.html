@@ -1,0 +1,19 @@
+<div class="row" data-ng-show="true">
+	<form class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" data-ng-submit="login(username, password)">
+		<h2 class="text-center">Login</h2>
+		<div class="form-box">
+			<div class="form-group">
+				<input data-ng-model="user.UserName" type="text" class="form-control" placeholder="{{ 'LOGIN_USERNAME' | translate }}" required="true" autofocus="true" />
+			</div>
+			<div class="form-group">
+				<input data-ng-model="user.Password" type="password" class="form-control" placeholder="{{ 'LOGIN_PASSWORD' | translate }}" required="true" />
+			</div>
+			<div class="form-group">
+				<button class="btn btn-primary btn-block" type="submit" data-ng-disabled="!IsSubmitEnabled()">Login</button>
+			</div>
+			<div data-ng-if="loginError" class="form-group text-center">
+				<span class="text-danger">{{loginError}}</span>
+			</div>
+		</div>
+	</form>
+</div>

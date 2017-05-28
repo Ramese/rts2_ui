@@ -1,0 +1,51 @@
+<div class="container-fluid">
+    <div class="pull-right" ng-include="'Views/menu.html'">
+	</div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Add</div>
+        <div class="panel-body" ng-include="'Views/addTargetToQueue.html'"></div>
+        <div class="panel-footer">
+            <button type="button" ng-click="addToQueue()" class="btn btn-primary" ng-disabled="!(queueName && choosenTarget)">Add</button>
+        </div>
+    </div>
+
+    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Queue</th>
+                <th>Traget</th>
+                <th>Q ID</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Rep</th>
+                <th>Separation</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="q in selector.d.queue_names[1] track by $index">
+            <tr class="info">
+                <td colspan="7">{{ q }}</td>
+                <td>
+                    <button ng-show="hide[q]" class="btn btn-default" uib-tooltip="Show" ng-click="hide[q] = false"><span class="glyphicon glyphicon-triangle-top"></span></a>
+                    <button ng-hide="hide[q]" class="btn btn-default" uib-tooltip="Show" ng-click="hide[q] = true"><span class="glyphicon glyphicon-triangle-bottom"></span></a>
+                </td>
+            </tr>
+            <tr ng-repeat="t in selector.d[q + '_ids'][1] track by $index" ng-hide="hide[q]">
+                <td></td>
+                <td><span uib-tooltip="{{ getTargetTooltip(targets[t]) }}">{{ targets[t][1] }}</span></td>
+                <td>{{ selector.d[q + '_qid'][1][$index] }}</td>
+                <td ng-hide="selector.d[q + '_start'][1][$index]"></td>
+                <td ng-show="selector.d[q + '_start'][1][$index]">{{ selector.d[q + '_start'][1][$index]*1000 | date:'yyyy-MM-dd HH:mm:ss Z' }}</td>
+                <td ng-hide="selector.d[q + '_end'][1][$index]"></td>
+                <td ng-show="selector.d[q + '_end'][1][$index]">{{ selector.d[q + '_end'][1][$index]*1000 | date:'yyyy-MM-dd HH:mm:ss Z' }}</td>
+                <td>{{ selector.d[q + '_rep_n'][1][$index] }}</td>
+                <td>{{ selector.d[q + '_rep_separation'][1][$index] }}</td>
+                <td>
+                    <button ng-disabled="true" type="button" class="btn btn-danger" uib-tooltip="Remove"><span class="glyphicon glyphicon-trash"></span></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

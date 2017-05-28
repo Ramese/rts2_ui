@@ -1,0 +1,26 @@
+<div class="container-fluid">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Plan panel
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="well well-sm">
+                        <div uib-datepicker="" ng-model="choosenDate" ng-change="DateChanged()" datepicker-options="options"></div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="progress" style="height: 50px;">
+                        <div class="progress-bar" 
+                            ng-repeat="period in periods" 
+                            ng-style="{ 'width' : getWidthForPeriod(period) + '%' }"
+                            ng-class="{'progress-bar-info': period.TargetName == 'Empty'}">
+                                <span>{{period.TargetName}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
